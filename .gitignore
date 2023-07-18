@@ -9,3 +9,4 @@
 **/*.iml
 .pmd
 prepare-branch-and-checkout.sh
+find-github-project-id.sh
