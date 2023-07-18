@@ -1,4 +1,4 @@
-package io.github.orionlibs.orionmath;
+package io.github.orionlibs.math;
 
 import lombok.NoArgsConstructor;
 

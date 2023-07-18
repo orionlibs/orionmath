@@ -1,4 +1,4 @@
-package io.github.orionlibs.orionmath;
+package io.github.orionlibs.math;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
