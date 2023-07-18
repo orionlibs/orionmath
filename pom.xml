@@ -11,6 +11,7 @@
 
     <modules>
         <module>orionmath_core</module>
+        <module>orionmath_algebra</module>
     </modules>
 
 
