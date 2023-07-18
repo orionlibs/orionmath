@@ -1,33 +1,28 @@
-package io.github.orionlibs.project_name;
+package io.github.orionlibs.orionmath;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import io.github.orionlibs.project_name.log.ListLogHandler;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 
 @TestInstance(Lifecycle.PER_CLASS)
-//@Execution(ExecutionMode.CONCURRENT)
+@Execution(ExecutionMode.CONCURRENT)
 public class NewClassTest
 {
-    private ListLogHandler listLogHandler;
-
-
     @BeforeEach
     void setUp()
     {
-        listLogHandler = new ListLogHandler();
-        NewClass.addLogHandler(listLogHandler);
     }
 
 
     @AfterEach
     public void teardown()
     {
-        NewClass.removeLogHandler(listLogHandler);
     }
 
 
