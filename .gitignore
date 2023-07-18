@@ -10,3 +10,4 @@
 .pmd
 prepare-branch-and-checkout.sh
 find-github-project-id.sh
+create-PR-and-merge.sh
