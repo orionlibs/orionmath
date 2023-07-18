@@ -3,11 +3,17 @@
     <groupId>io.github.orionlibs</groupId>
     <artifactId>orionmath</artifactId>
     <version>0.0.1</version>
-    <name>name</name>
+    <packaging>pom</packaging>
+    <name>OrionMath</name>
     <description>Object-oriented mathematical library</description>
     <url>https://github.com/orionlibs/orionmath</url>
-    
-    
+
+
+    <modules>
+        <module>orionmath_core</module>
+    </modules>
+
+
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
