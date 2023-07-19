@@ -23,6 +23,18 @@ public abstract class ANum implements NumberPrinter//Cloneable, Comparable<ANumb
     }*/
 
 
+    public String printRealValue()
+    {
+        return NumberPrinter.super.printRealValue(realValue);
+    }
+
+
+    public String printImaginaryValue()
+    {
+        return NumberPrinter.super.printImaginaryValue(imaginaryValue);
+    }
+
+
     public String print()
     {
         return NumberPrinter.super.print(realValue, imaginaryValue);

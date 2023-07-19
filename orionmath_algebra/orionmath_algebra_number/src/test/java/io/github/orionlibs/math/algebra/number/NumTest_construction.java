@@ -16,5 +16,7 @@ public class NumTest_construction
     void test_emptyConstructor() throws Exception
     {
         assertEquals("0", Num.of().print());
+        assertEquals("0", Num.of().printRealValue());
+        assertEquals("0", Num.of().printImaginaryValue());
     }
 }
