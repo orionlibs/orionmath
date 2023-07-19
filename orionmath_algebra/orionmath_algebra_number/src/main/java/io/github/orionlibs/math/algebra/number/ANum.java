@@ -2,7 +2,7 @@ package io.github.orionlibs.math.algebra.number;
 
 import java.math.BigDecimal;
 
-public abstract class ANum// implements Cloneable, Comparable<ANumb>
+public abstract class ANum implements NumberPrinter//Cloneable, Comparable<ANumb>
 {
     protected BigDecimal realValue = BigDecimal.ZERO;
     protected BigDecimal imaginaryValue = BigDecimal.ZERO;
@@ -23,52 +23,9 @@ public abstract class ANum// implements Cloneable, Comparable<ANumb>
     }*/
 
 
-    public String printRealValue()
-    {
-        return realValue.toPlainString();
-    }
-
-
-    public String printImaginaryValue()
-    {
-        return imaginaryValue.toPlainString();
-    }
-
-
     public String print()
     {
-        int imaginaryValueToZeroComparison = imaginaryValue.compareTo(BigDecimal.ZERO);
-        int realValueToZeroComparison = realValue.compareTo(BigDecimal.ZERO);
-        if(imaginaryValueToZeroComparison != 0)
-        {
-            if(imaginaryValueToZeroComparison > 0)
-            {
-                if(realValueToZeroComparison != 0)
-                {
-                    return printRealValue() + printImaginaryValue() + "i";
-                }
-                else
-                {
-                    return printImaginaryValue() + "i";
-                }
-            }
-            else
-            {
-                if(realValueToZeroComparison != 0)
-                {
-                    return printRealValue() + printImaginaryValue() + "i";
-                }
-                else
-                {
-                    return printImaginaryValue() + "i";
-                }
-            }
-        }
-        else
-        {
-            return printRealValue();
-        }
-        //return NumberService.print(this);
+        return NumberPrinter.super.print(realValue, imaginaryValue);
     }
 
 
