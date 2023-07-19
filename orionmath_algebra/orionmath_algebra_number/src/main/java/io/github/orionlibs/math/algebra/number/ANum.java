@@ -17,10 +17,26 @@ public abstract class ANum implements NumberPrinter//Cloneable, Comparable<ANumb
     }
 
 
-    /*protected ANum(String realValue, String imaginaryValue)
+    protected ANum(boolean isNaN)
     {
-        new NumberInternalService().saveNumberValues(this, realValue, imaginaryValue);
-    }*/
+        if(isNaN)
+        {
+            setRealValueAsNull();
+            setImaginaryValueAsNull();
+        }
+    }
+
+
+    public void setRealValueAsNull()
+    {
+        this.realValue = null;
+    }
+
+
+    public void setImaginaryValueAsNull()
+    {
+        this.imaginaryValue = null;
+    }
 
 
     public String printRealValue()

@@ -19,4 +19,16 @@ public class NumTest_construction
         assertEquals("0", Num.of().printRealValue());
         assertEquals("0", Num.of().printImaginaryValue());
     }
+
+
+    @Test
+    void test_constructorForNaN() throws Exception
+    {
+        assertEquals("0", Num.of(false).print());
+        assertEquals("0", Num.of(false).printRealValue());
+        assertEquals("0", Num.of(false).printImaginaryValue());
+        assertEquals("NaN", Num.of(true).print());
+        assertEquals("NaN", Num.of(true).printRealValue());
+        assertEquals("NaN", Num.of(true).printImaginaryValue());
+    }
 }
