@@ -12,13 +12,12 @@
 
     <groupId>io.github.orionlibs</groupId>
     <artifactId>orionmath_algebra_number</artifactId>
-    <version>0.0.1</version>
+
+
     <dependencies>
         <dependency>
             <groupId>io.github.username</groupId>
             <artifactId>orionmath_core</artifactId>
-            <version>0.0.1</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

@@ -12,7 +12,7 @@ public class Assert
     {
         if(object == null)
         {
-            throw new IllegalArgumentException(message);
+            throw new InvalidArgumentException(message);
         }
     }
 
@@ -21,7 +21,7 @@ public class Assert
     {
         if(text == null || text.isEmpty())
         {
-            throw new IllegalArgumentException(message);
+            throw new InvalidArgumentException(message);
         }
     }
 
@@ -53,7 +53,7 @@ public class Assert
     {
         if(object == null || object.isEmpty())
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -63,7 +63,7 @@ public class Assert
         notNull(array, errorMessage);
         if(array.length == 0)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -73,7 +73,7 @@ public class Assert
         notNull(array, errorMessage);
         if(array.length == 0)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -86,14 +86,14 @@ public class Assert
         boolean length2Matches = length != array2.length;
         if(length2Matches)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
         if(arrays != null && arrays.length > 0)
         {
             Arrays.stream(arrays).forEach(array -> notNull(array, errorMessage));
             if(Arrays.stream(arrays).anyMatch(array -> array.length != length))
             {
-                throw new IllegalArgumentException(errorMessage);
+                throw new InvalidArgumentException(errorMessage);
             }
         }
     }
@@ -107,14 +107,14 @@ public class Assert
         boolean length2Matches = length != string2.length();
         if(length2Matches)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
         if(strings != null && strings.length > 0)
         {
             Arrays.stream(strings).forEach(string -> notNull(string, errorMessage));
             if(Arrays.stream(strings).anyMatch(string -> string.length() != length))
             {
-                throw new IllegalArgumentException(errorMessage);
+                throw new InvalidArgumentException(errorMessage);
             }
         }
     }
@@ -125,7 +125,7 @@ public class Assert
         notNull(mapper, errorMessage);
         if(mapper.isEmpty())
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -135,7 +135,7 @@ public class Assert
         notNull(array, errorMessage);
         if(array.length == 0)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -145,7 +145,7 @@ public class Assert
         notNull(array, errorMessage);
         if(array.length == 0)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -155,7 +155,7 @@ public class Assert
         notNull(array, errorMessage);
         if(array.length == 0)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -165,7 +165,7 @@ public class Assert
         notNull(array, errorMessage);
         if(array.length == 0)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -175,7 +175,7 @@ public class Assert
         notNull(array, errorMessage);
         if(array.length == 0)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -185,7 +185,7 @@ public class Assert
         notNull(array, errorMessage);
         if(array.length == 0)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -195,7 +195,7 @@ public class Assert
         notNull(array, errorMessage);
         if(array.length == 0)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -216,7 +216,7 @@ public class Assert
         notNull(array, errorMessage);
         if(array.length != length)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -226,7 +226,7 @@ public class Assert
         notNull(array, errorMessage);
         if(array.length != length)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -236,7 +236,7 @@ public class Assert
         notNull(array, errorMessage);
         if(array.length != length)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -246,7 +246,7 @@ public class Assert
         notNull(array, errorMessage);
         if(array.length != length)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -256,7 +256,7 @@ public class Assert
         notNull(array, errorMessage);
         if(array.length != length)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -266,7 +266,7 @@ public class Assert
         notNull(array, errorMessage);
         if(array.length != length)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -276,7 +276,7 @@ public class Assert
         notNull(array, errorMessage);
         if(array.length != length)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -286,7 +286,7 @@ public class Assert
         notNull(array, errorMessage);
         if(array.length != length)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -296,7 +296,7 @@ public class Assert
         notNull(array, errorMessage);
         if(array.length != length)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -306,7 +306,7 @@ public class Assert
         notNull(s, errorMessage);
         if(s.length() != length)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -316,7 +316,7 @@ public class Assert
         notNull(array, errorMessage);
         if(array.length < length)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -326,7 +326,7 @@ public class Assert
         notNull(array, errorMessage);
         if(array.size() < length)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -335,7 +335,7 @@ public class Assert
     {
         if(x != 0)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -344,7 +344,7 @@ public class Assert
     {
         if(x == 0)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -353,7 +353,7 @@ public class Assert
     {
         if(new BigDecimal(x.toString()).compareTo(BigDecimal.ZERO) == 0)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -362,7 +362,7 @@ public class Assert
     {
         if(x != 0)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -371,7 +371,7 @@ public class Assert
     {
         if(x <= 0)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -380,7 +380,7 @@ public class Assert
     {
         if(x < 0)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -389,7 +389,7 @@ public class Assert
     {
         if(x < 0)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -398,7 +398,7 @@ public class Assert
     {
         if(x < lowerBound || x >= upperBound)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -407,7 +407,7 @@ public class Assert
     {
         if(x <= y)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -416,7 +416,7 @@ public class Assert
     {
         if(x < y)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -425,7 +425,7 @@ public class Assert
     {
         if(x > y)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -434,7 +434,7 @@ public class Assert
     {
         if(x >= y)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -443,7 +443,7 @@ public class Assert
     {
         if(x != y)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -452,7 +452,7 @@ public class Assert
     {
         if(x != y)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -461,7 +461,7 @@ public class Assert
     {
         if(x == y)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -470,7 +470,7 @@ public class Assert
     {
         if(!condition)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 
@@ -479,7 +479,7 @@ public class Assert
     {
         if(condition)
         {
-            throw new IllegalArgumentException(errorMessage);
+            throw new InvalidArgumentException(errorMessage);
         }
     }
 }
