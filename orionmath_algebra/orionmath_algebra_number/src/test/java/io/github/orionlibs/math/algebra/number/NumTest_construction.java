@@ -24,9 +24,11 @@ public class NumTest_construction
     @Test
     void test_constructorForNaN() throws Exception
     {
+        //not NaN
         assertEquals("0", Num.of(false).print());
         assertEquals("0", Num.of(false).printRealValue());
         assertEquals("0", Num.of(false).printImaginaryValue());
+        //NaN
         assertEquals("NaN", Num.of(true).print());
         assertEquals("NaN", Num.of(true).printRealValue());
         assertEquals("NaN", Num.of(true).printImaginaryValue());
