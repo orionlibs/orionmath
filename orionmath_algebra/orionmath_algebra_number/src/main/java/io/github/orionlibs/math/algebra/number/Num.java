@@ -1,18 +1,10 @@
 package io.github.orionlibs.math.algebra.number;
 
-import java.math.BigDecimal;
-
-public class ANumb// implements Cloneable, Comparable<ANumb>
+public final class Num extends ANum
 {
-    private BigDecimal realValue = BigDecimal.ZERO;
-    private BigDecimal imaginaryValue = BigDecimal.ZERO;
-    private boolean isValidNumber;
-    private boolean isFinite;
-
-
-    private ANumb()
+    private Num()
     {
-        this("0", "0");
+        super();
     }
 
 
@@ -68,15 +60,15 @@ public class ANumb// implements Cloneable, Comparable<ANumb>
     }*/
 
 
-    private ANumb(String realValue, String imaginaryValue)
+    /*private Num(String realValue, String imaginaryValue)
     {
-        //new NumberInternalService().saveNumberValues(this, realValue, imaginaryValue);
-    }
+        new NumberInternalService().saveNumberValues(this, realValue, imaginaryValue);
+    }*/
 
 
-    public static ANumb of()
+    public static Num of()
     {
-        return new ANumb();
+        return new Num();
     }
 
 
@@ -89,18 +81,26 @@ public class ANumb// implements Cloneable, Comparable<ANumb>
     public static ANumb of(String realValue)
     {
         return new ANumb(realValue);
-    }
+    }*/
 
 
-    public static ANumb of(String realValue, String imaginaryValue)
+    /*public static Num of(String realValue, String imaginaryValue)
     {
-        return new ANumb(realValue, imaginaryValue);
-    }
+        return new Num(realValue, imaginaryValue);
+    }*/
 
 
-    public static ANumb of(Number realValue)
+    /*public static ANumb of(Number realValue)
     {
         return new ANumb(realValue);
+    }
+
+
+    public static ANumb ofPrecision(Number realValue, int precision)
+    {
+        ANumb temp = new ANumb(realValue);
+        temp.applyPrecision(precision);
+        return temp;
     }
 
 
@@ -149,16 +149,10 @@ public class ANumb// implements Cloneable, Comparable<ANumb>
     public static ANumb ofMax()
     {
         return new ANumb("999999999999999999999999999999999999999999999999999999999999999999999999999999.0");
-    }*/
+    }
 
 
-    /*public NumberType getNumberType()
-    {
-        return NumberInternalService.getNumberType(this);
-    }*/
-
-
-    /*public void trimZeros()
+    public void trimZeros()
     {
         NumberService.trimZeros(this);
     }
@@ -189,31 +183,6 @@ public class ANumb// implements Cloneable, Comparable<ANumb>
         ANumb copy = getCopy();
         copy.applyPrecision(precision);
         return copy;
-    }
-
-
-    public String printRealValue()
-    {
-        return get().toPlainString();
-    }
-
-
-    public String printImaginaryValue()
-    {
-        return getImaginaryValue().toPlainString();
-    }
-
-
-    public String print()
-    {
-        return NumberService.print(this);
-    }
-
-
-    @Override
-    public String toString()
-    {
-        return print();
     }
 
 
@@ -1455,6 +1424,12 @@ public class ANumb// implements Cloneable, Comparable<ANumb>
     public void setValidNumber(boolean isValidNumber)
     {
         this.isValidNumber = isValidNumber;
+    }
+
+
+    public NumberType getNumberType()
+    {
+        return NumberInternalService.getNumberType(this);
     }
 
 

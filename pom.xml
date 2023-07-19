@@ -13,6 +13,24 @@
         <module>orionmath_core</module>
         <module>orionmath_algebra</module>
     </modules>
+    
+    
+    <!--<dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.github.orionlibs</groupId>
+                <artifactId>orionmath_core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            
+            
+            <dependency>
+                <groupId>io.github.orionlibs</groupId>
+                <artifactId>orionmath_algebra</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>-->
 
 
     <properties>
@@ -202,13 +220,6 @@
     </build>
     
     
-    <!--<distributionManagement>
-        <repository>
-            <id>internal.repo</id>
-            <name>Temporary Staging Repository</name>
-            <url>file://${project.build.directory}/mvn-repo</url>
-        </repository>
-    </distributionManagement>-->
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
@@ -223,6 +234,20 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>io.github.username</groupId>
+                <artifactId>orionmath_core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            
+            
+            <dependency>
+                <groupId>io.github.username</groupId>
+                <artifactId>orionmath_algebra</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            
+            
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
