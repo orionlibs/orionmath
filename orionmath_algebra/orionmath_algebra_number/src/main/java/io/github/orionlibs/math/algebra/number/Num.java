@@ -8,19 +8,13 @@ public final class Num extends ANum
     }
 
 
-    /*private ANumb(boolean isNaN)
+    private Num(boolean isNaN)
     {
-
-        if(isNaN)
-        {
-            setRealValueAsNull();
-            setImaginaryValueAsNull();
-        }
-
+        super(isNaN);
     }
 
 
-    private ANumb(Number realValue)
+    /*private ANumb(Number realValue)
     {
         this(realValue, BigDecimal.ZERO);
     }
@@ -72,13 +66,13 @@ public final class Num extends ANum
     }
 
 
-    /*public static ANumb of(boolean isNaN)
+    public static Num of(boolean isNaN)
     {
-        return new ANumb(isNaN);
+        return new Num(isNaN);
     }
 
 
-    public static ANumb of(String realValue)
+    /*public static ANumb of(String realValue)
     {
         return new ANumb(realValue);
     }*/
@@ -1346,12 +1340,6 @@ public final class Num extends ANum
     public void setRealValue(ANumb realValue)
     {
         this.realValue = realValue.get();
-    }
-
-
-    public void setRealValueAsNull()
-    {
-        this.realValue = null;
     }
 
 
