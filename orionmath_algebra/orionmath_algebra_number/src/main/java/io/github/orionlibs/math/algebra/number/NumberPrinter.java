@@ -1,41 +1,48 @@
 package io.github.orionlibs.math.algebra.number;
 
+import io.github.orionlibs.math.core.OrionPrinter;
 import java.math.BigDecimal;
 
-public interface NumberPrinter
+public interface NumberPrinter extends OrionPrinter
 {
     default String printRealValue(BigDecimal x)
     {
-        return x != null ? x.toPlainString() : "NaN";
+        return OrionPrinter.super.print(x);
     }
 
 
     default String printImaginaryValue(BigDecimal y)
     {
-        return y != null ? y.toPlainString() : "NaN";
+        return OrionPrinter.super.print(y);
     }
 
 
-    default String print(BigDecimal x, BigDecimal y)
+    default String print(BigDecimal realValue, BigDecimal imaginaryValue)
     {
-        boolean xExists = x != null;
-        boolean yExists = y != null;
-        int xComparisonValue = xExists ? BigDecimal.ZERO.compareTo(x) : 0;
-        int yComparisonValue = yExists ? BigDecimal.ZERO.compareTo(y) : 0;
-        if(yComparisonValue != 0)
+        boolean xExists = realValue != null;
+        boolean yExists = imaginaryValue != null && BigDecimal.ZERO.compareTo(imaginaryValue) != 0;
+        if(yExists)
         {
-            if(xComparisonValue != 0)
-            {
-                return printRealValue(x) + printImaginaryValue(y) + "i";
-            }
-            else
-            {
-                return printImaginaryValue(y) + "i";
-            }
+            return printComplexNumber(realValue, imaginaryValue);
         }
         else
         {
-            return xExists ? printRealValue(x) : "NaN";
+            return xExists ? printRealValue(realValue) : "NaN";
+        }
+    }
+
+
+    private String printComplexNumber(BigDecimal realValue, BigDecimal imaginaryValue)
+    {
+        boolean xExists = realValue != null;
+        int xComparisonValue = xExists ? BigDecimal.ZERO.compareTo(realValue) : 0;
+        if(xComparisonValue != 0)
+        {
+            return printRealValue(realValue) + printImaginaryValue(imaginaryValue) + "i";
+        }
+        else
+        {
+            return printImaginaryValue(imaginaryValue) + "i";
         }
     }
 }
