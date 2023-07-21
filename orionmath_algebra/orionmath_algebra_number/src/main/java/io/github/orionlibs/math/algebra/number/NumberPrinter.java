@@ -20,11 +20,11 @@ public interface NumberPrinter
     {
         boolean xExists = x != null;
         boolean yExists = y != null;
-        int realValueExists = xExists ? BigDecimal.ZERO.compareTo(x) : 0;
-        int imaginaryValueExists = yExists ? BigDecimal.ZERO.compareTo(y) : 0;
-        if(imaginaryValueExists != 0)
+        int xComparisonValue = xExists ? BigDecimal.ZERO.compareTo(x) : 0;
+        int yComparisonValue = yExists ? BigDecimal.ZERO.compareTo(y) : 0;
+        if(yComparisonValue != 0)
         {
-            if(realValueExists != 0)
+            if(xComparisonValue != 0)
             {
                 return printRealValue(x) + printImaginaryValue(y) + "i";
             }
