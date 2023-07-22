@@ -15,7 +15,7 @@ import org.junit.jupiter.api.parallel.ExecutionMode;
 public class NumTest_construction
 {
     @Test
-    void test_emptyConstructor() throws Exception
+    void test_emptyConstructor()
     {
         assertEquals("0", Num.of().print());
         assertEquals("0", Num.of().printRealValue());
@@ -24,7 +24,7 @@ public class NumTest_construction
 
 
     @Test
-    void test_constructorForNaN() throws Exception
+    void test_constructorForNaN()
     {
         //not NaN
         assertEquals("0", Num.of(false).print());
@@ -41,7 +41,7 @@ public class NumTest_construction
 
 
     @Test
-    void test_constructorForRealNumber_usingNumberObjects() throws Exception
+    void test_constructorForRealNumber_usingNumberObjects()
     {
         assertEquals("1", Num.of(1).print());
         Num num = Num.of(-1);
@@ -61,7 +61,7 @@ public class NumTest_construction
 
 
     @Test
-    void test_constructorForRealNumber_usingStrings() throws Exception
+    void test_constructorForRealNumber_usingStrings()
     {
         assertEquals("1", Num.of("1").print());
         Num num = Num.of("-1");
@@ -79,7 +79,7 @@ public class NumTest_construction
 
 
     @Test
-    void test_constructorForComplexNumber_usingNumberObjects() throws Exception
+    void test_constructorForComplexNumber_usingNumberObjects()
     {
         assertEquals("1", Num.of(1, 0).print());
         Num num = Num.of(-1, 0);
@@ -101,7 +101,7 @@ public class NumTest_construction
 
 
     @Test
-    void test_constructorForComplexNumber_usingStrings() throws Exception
+    void test_constructorForComplexNumber_usingStrings()
     {
         assertEquals("1", Num.of("1", "0").print());
         Num num = Num.of("-1", "0");
@@ -121,7 +121,7 @@ public class NumTest_construction
 
 
     @Test
-    void test_constructorForMinimumNumber() throws Exception
+    void test_constructorForMinimumNumber()
     {
         Num num = Num.ofMin();
         assertEquals("-999999999999999999999999999999999999999999999999999999999999999999999999999999", num.printRealValue());
@@ -130,7 +130,7 @@ public class NumTest_construction
 
 
     @Test
-    void test_constructorForMaximumNumber() throws Exception
+    void test_constructorForMaximumNumber()
     {
         Num num = Num.ofMax();
         assertEquals("999999999999999999999999999999999999999999999999999999999999999999999999999999", num.printRealValue());
