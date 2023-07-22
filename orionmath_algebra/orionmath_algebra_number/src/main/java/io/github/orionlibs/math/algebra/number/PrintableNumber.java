@@ -13,7 +13,15 @@ public interface PrintableNumber extends OrionPrinter
 
     default String printImaginaryValue(BigDecimal y)
     {
-        return OrionPrinter.super.print(y);
+        String printed = OrionPrinter.super.print(y);
+        if("NaN".equals(printed))
+        {
+            return printed;
+        }
+        else
+        {
+            return printed.startsWith("-") ? printed : "+" + printed;
+        }
     }
 
 

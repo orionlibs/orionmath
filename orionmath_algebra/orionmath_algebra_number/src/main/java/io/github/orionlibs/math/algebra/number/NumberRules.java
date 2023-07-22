@@ -1,6 +1,8 @@
 package io.github.orionlibs.math.algebra.number;
 
 import io.github.orionlibs.math.core.MathRule;
+import io.github.orionlibs.math.core.exception.Assert;
+import java.util.Arrays;
 
 public class NumberRules extends MathRule
 {
@@ -106,7 +108,7 @@ public class NumberRules extends MathRule
     public static void isNotEmpty(Object[] numbers)
     {
         Assert.notEmpty(numbers, "Cannot perform operation on null/empty array of numbers.");
-    }
+    }*/
 
 
     public static void isNotNull(Object x)
@@ -115,11 +117,11 @@ public class NumberRules extends MathRule
     }
 
 
-    public static void areNotNull(ANumb... numbers)
+    /*public static void areNotNull(ANum... numbers)
     {
         Assert.notEmpty(numbers, "Cannot perform operation on null numbers.");
         Arrays.stream(numbers).forEach(x -> isNotNull(x));
-    }
+    }*/
 
 
     public static void areNotNull(Number... numbers)
@@ -129,7 +131,7 @@ public class NumberRules extends MathRule
     }
 
 
-    public static void areNotNull(String... numbers)
+    /*public static void areNotNull(String... numbers)
     {
         Assert.notEmpty(numbers, "Cannot perform operation on null numbers.");
         Arrays.stream(numbers).forEach(x -> isNotNull(x));

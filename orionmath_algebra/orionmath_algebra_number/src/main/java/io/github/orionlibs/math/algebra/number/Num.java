@@ -14,20 +14,19 @@ public final class Num extends ANum
     }
 
 
-    /*private ANumb(Number realValue)
+    private Num(Number realValue)
     {
-        this(realValue, BigDecimal.ZERO);
+        super(realValue);
     }
 
 
-    private ANumb(Number realValue, Number imaginaryValue)
+    private Num(Number realValue, Number imaginaryValue)
     {
-        NumberRules.areNotNull(realValue, imaginaryValue);
-        new NumberInternalService().saveNumberValues(this, realValue.toString(), imaginaryValue.toString());
+        super(realValue, imaginaryValue);
     }
 
 
-    private ANumb(ANumb realValue, ANumb imaginaryValue)
+    /*private ANumb(ANumb realValue, ANumb imaginaryValue)
     {
         NumberRules.areNotNull(realValue, imaginaryValue);
         new NumberInternalService().saveNumberValues(this, realValue.get().toString(), imaginaryValue.get().toString());
@@ -45,19 +44,19 @@ public final class Num extends ANum
     {
         NumberRules.areNotNull(realValue, imaginaryValue);
         new NumberInternalService().saveNumberValues(this, realValue.get().toPlainString(), imaginaryValue.toString());
+    }*/
+
+
+    private Num(String realValue)
+    {
+        super(realValue);
     }
 
 
-    private ANumb(String realValue)
+    private Num(String realValue, String imaginaryValue)
     {
-        this(realValue, "0");
-    }*/
-
-
-    /*private Num(String realValue, String imaginaryValue)
-    {
-        new NumberInternalService().saveNumberValues(this, realValue, imaginaryValue);
-    }*/
+        super(realValue, imaginaryValue);
+    }
 
 
     public static Num of()
@@ -72,35 +71,35 @@ public final class Num extends ANum
     }
 
 
-    /*public static ANumb of(String realValue)
+    public static Num of(Number realValue)
     {
-        return new ANumb(realValue);
-    }*/
-
-
-    /*public static Num of(String realValue, String imaginaryValue)
-    {
-        return new Num(realValue, imaginaryValue);
-    }*/
-
-
-    /*public static ANumb of(Number realValue)
-    {
-        return new ANumb(realValue);
+        return new Num(realValue);
     }
 
 
-    public static ANumb ofPrecision(Number realValue, int precision)
+    public static Num of(Number realValue, Number imaginaryValue)
+    {
+        return new Num(realValue, imaginaryValue);
+    }
+
+
+    public static Num of(String realValue)
+    {
+        return new Num(realValue);
+    }
+
+
+    public static Num of(String realValue, String imaginaryValue)
+    {
+        return new Num(realValue, imaginaryValue);
+    }
+
+
+    /*public static ANumb ofPrecision(Number realValue, int precision)
     {
         ANumb temp = new ANumb(realValue);
         temp.applyPrecision(precision);
         return temp;
-    }
-
-
-    public static ANumb of(Number realValue, Number imaginaryValue)
-    {
-        return new ANumb(realValue, imaginaryValue);
     }
 
 
@@ -125,28 +124,28 @@ public final class Num extends ANum
     public static ANumb ofPolarCoordinates(ANumb modulus, ANumb argument)
     {
         return new ANumb(modulus.multiplyGET(argument.getCosine()), modulus.multiplyGET(argument.getSine()));
-    }
+    }*/
 
 
-    public static ANumb ofNaN()
+    public static Num ofNaN()
     {
-        return new ANumb(true);
+        return new Num(true);
     }
 
 
-    public static ANumb ofMin()
+    public static Num ofMin()
     {
-        return new ANumb("-999999999999999999999999999999999999999999999999999999999999999999999999999999.0");
+        return new Num("-999999999999999999999999999999999999999999999999999999999999999999999999999999.0");
     }
 
 
-    public static ANumb ofMax()
+    public static Num ofMax()
     {
-        return new ANumb("999999999999999999999999999999999999999999999999999999999999999999999999999999.0");
+        return new Num("999999999999999999999999999999999999999999999999999999999999999999999999999999.0");
     }
 
 
-    public void trimZeros()
+    /*public void trimZeros()
     {
         NumberService.trimZeros(this);
     }
