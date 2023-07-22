@@ -10,6 +10,6 @@
     </parent>
 
 
-    <groupId>io.github.username</groupId>
+    <groupId>io.github.orionlibs</groupId>
     <artifactId>orionmath_core</artifactId>
 </project>

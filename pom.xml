@@ -235,14 +235,14 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>io.github.username</groupId>
+                <groupId>io.github.orionlibs</groupId>
                 <artifactId>orionmath_core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             
             
             <dependency>
-                <groupId>io.github.username</groupId>
+                <groupId>io.github.orionlibs</groupId>
                 <artifactId>orionmath_algebra</artifactId>
                 <version>${project.version}</version>
             </dependency>
