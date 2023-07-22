@@ -1,5 +1,7 @@
 package io.github.orionlibs.math.algebra.number;
 
+import java.math.BigDecimal;
+
 public final class Num extends ANum
 {
     private Num()
@@ -145,13 +147,7 @@ public final class Num extends ANum
     }
 
 
-    /*public void trimZeros()
-    {
-        NumberService.trimZeros(this);
-    }
-
-
-    public void applyPrecision()
+    /*public void applyPrecision()
     {
         PrecisionService.applyPrecision(this);
     }
@@ -1294,12 +1290,6 @@ public final class Num extends ANum
     }
 
 
-    public BigDecimal get()
-    {
-        return getRealValue();
-    }
-
-
     public BigDecimal getAsDecimalCopy()
     {
         return new BigDecimal(get().toPlainString());
@@ -1321,12 +1311,6 @@ public final class Num extends ANum
     public BigInteger getAsBigInteger()
     {
         return NumberInternalService.getRealValueAsBigInteger(this);
-    }
-
-
-    public BigDecimal getRealValue()
-    {
-        return realValue;
     }
 
 
