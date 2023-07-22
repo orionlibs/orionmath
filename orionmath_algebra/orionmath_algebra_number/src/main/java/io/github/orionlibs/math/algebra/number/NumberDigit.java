@@ -11,23 +11,6 @@ public interface NumberDigit
     }
 
 
-    static boolean hasDecimalPoint(String x)
-    {
-        return x != null && x.indexOf(".") >= 0;
-    }
-
-
-    static int getNumberOfDecimalDigits(String x)
-    {
-        NumberRules.isNotNull(x);
-        if(hasDecimalPoint(x))
-        {
-            return x.substring(x.indexOf(".") + 1).length();
-        }
-        return 0;
-    }
-
-
     default BigDecimal reverseDigits(BigDecimal x)
     {
         NumberRules.isNotNull(x);
