@@ -1,7 +1,5 @@
 package io.github.orionlibs.math.algebra.number;
 
-import java.math.BigDecimal;
-
 public final class Num extends ANum
 {
     private Num()
@@ -147,6 +145,12 @@ public final class Num extends ANum
     }
 
 
+    public Num reverseDigits()
+    {
+        return Num.of(reverseDigits(getReal()), reverseDigits(getImaginary()));
+    }
+
+
     /*public void applyPrecision()
     {
         PrecisionService.applyPrecision(this);
@@ -172,24 +176,6 @@ public final class Num extends ANum
         ANumb copy = getCopy();
         copy.applyPrecision(precision);
         return copy;
-    }
-
-
-    public int getNumberOfDecimalDigitsOfRealValue()
-    {
-        return NumberService.getNumberOfDecimalDigitsOfRealValue(this);
-    }
-
-
-    public int getNumberOfDecimalDigitsOfImaginaryValue()
-    {
-        return NumberService.getNumberOfDecimalDigitsOfImaginaryValue(this);
-    }
-
-
-    public boolean hasDecimalDigits()
-    {
-        return Numbers.hasDecimalDigits(this);
     }
 
 
@@ -226,18 +212,6 @@ public final class Num extends ANum
     public boolean hasDecimalValue()
     {
         return Numbers.hasDecimalValue(this);
-    }
-
-
-    public boolean hasRealValueDecimalDigits()
-    {
-        return Numbers.hasRealValueDecimalDigits(this);
-    }
-
-
-    public boolean hasImaginaryValueDecimalDigits()
-    {
-        return Numbers.hasImaginaryValueDecimalDigits(this);
     }
 
 
@@ -1160,12 +1134,6 @@ public final class Num extends ANum
     }
 
 
-    public ANumb reverseDigits()
-    {
-        return NumberService.reverseDigits(this);
-    }
-
-
     public boolean isPowerOf2()
     {
         return NumberService.isPowerOf2(this);
@@ -1181,12 +1149,6 @@ public final class Num extends ANum
     public boolean isUgly()
     {
         return NumberService.isUgly(this);
-    }
-
-
-    public ANumb getSumOfDigits()
-    {
-        return NumberService.getSumOfDigits(this);
     }
 
 

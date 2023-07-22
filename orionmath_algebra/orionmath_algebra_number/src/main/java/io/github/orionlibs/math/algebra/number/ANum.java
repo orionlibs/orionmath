@@ -3,7 +3,7 @@ package io.github.orionlibs.math.algebra.number;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public abstract class ANum implements PrintableNumber, ValidNumber, TrimmableNumber//Cloneable, Comparable<ANumb>
+public abstract class ANum implements PrintableNumber, ValidNumber, TrimmableNumber, NumberDigit//Cloneable, Comparable<ANumb>
 {
     protected BigDecimal realValue = BigDecimal.ZERO;
     protected BigDecimal imaginaryValue = BigDecimal.ZERO;
@@ -95,7 +95,43 @@ public abstract class ANum implements PrintableNumber, ValidNumber, TrimmableNum
 
     public ANum trimZeroes()
     {
-        return TrimmableNumber.super.trimZeroes(this);
+        return TrimmableNumber.super.trimZeroes(getReal(), getImaginary());
+    }
+
+
+    public int getNumberOfDecimalDigitsOfRealValue()
+    {
+        return getNumberOfDecimalDigits(getReal());
+    }
+
+
+    public int getNumberOfDecimalDigitsOfImaginaryValue()
+    {
+        return getNumberOfDecimalDigits(getImaginary());
+    }
+
+
+    public boolean hasRealValueDecimalDigits()
+    {
+        return getNumberOfDecimalDigits(getReal()) > 0;
+    }
+
+
+    public boolean hasImaginaryValueDecimalDigits()
+    {
+        return getNumberOfDecimalDigits(getImaginary()) > 0;
+    }
+
+
+    public int getSumOfDigits()
+    {
+        return getSumOfDigits(getReal());
+    }
+
+
+    public int getNumberOfDecimalDigits()
+    {
+        return getNumberOfDecimalDigits(getReal());
     }
 
 

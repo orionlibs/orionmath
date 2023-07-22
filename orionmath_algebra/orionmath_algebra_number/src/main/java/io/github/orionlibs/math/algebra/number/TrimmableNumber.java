@@ -4,11 +4,11 @@ import java.math.BigDecimal;
 
 public interface TrimmableNumber
 {
-    default ANum trimZeroes(ANum x)
+    default ANum trimZeroes(BigDecimal real, BigDecimal imaginary)
     {
-        NumberRules.isNotNull(x);
-        BigDecimal realValue = x.getReal().stripTrailingZeros();
-        BigDecimal imaginaryValue = x.getImaginary().stripTrailingZeros();
+        NumberRules.areNotNull(real, imaginary);
+        BigDecimal realValue = real.stripTrailingZeros();
+        BigDecimal imaginaryValue = imaginary.stripTrailingZeros();
         return Num.of(realValue, imaginaryValue);
     }
 }
