@@ -3,7 +3,7 @@ package io.github.orionlibs.math.algebra.number;
 import io.github.orionlibs.math.core.OrionPrinter;
 import java.math.BigDecimal;
 
-public interface NumberPrinter extends OrionPrinter
+public interface PrintableNumber extends OrionPrinter
 {
     default String printRealValue(BigDecimal x)
     {
