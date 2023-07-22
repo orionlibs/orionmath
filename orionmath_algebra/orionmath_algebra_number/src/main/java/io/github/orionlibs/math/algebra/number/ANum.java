@@ -135,6 +135,43 @@ public abstract class ANum implements PrintableNumber, ValidNumber, TrimmableNum
     }
 
 
+    public boolean hasIntegerValue()
+    {
+        return getReal().compareTo(new BigDecimal(getReal().toBigInteger())) == 0;
+    }
+
+
+    public boolean hasImaginaryValueIntegerValue()
+    {
+        return getImaginary().compareTo(new BigDecimal(getImaginary().toBigInteger())) == 0;
+    }
+
+
+    public boolean hasDecimalValue()
+    {
+        return getReal().compareTo(new BigDecimal(getReal().toBigInteger())) != 0
+                        || getImaginary().compareTo(new BigDecimal(getImaginary().toBigInteger())) != 0;
+    }
+
+
+    public boolean isComplexNumber()
+    {
+        return getImaginary().compareTo(BigDecimal.ZERO) != 0;
+    }
+
+
+    public boolean isNaN()
+    {
+        return getReal() == null;
+    }
+
+
+    public boolean isZero()
+    {
+        return getReal().compareTo(BigDecimal.ZERO) == 0 && getImaginary().compareTo(BigDecimal.ZERO) == 0;
+    }
+
+
     public void setRealValueAsNull()
     {
         this.realValue = null;

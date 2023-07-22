@@ -179,12 +179,6 @@ public final class Num extends ANum
     }
 
 
-    public boolean hasIntegerValue()
-    {
-        return Numbers.hasIntegerValue(this);
-    }
-
-
     public boolean hasInfiniteValue()
     {
         return hasPositiveInfiniteValue() || hasNegativeInfiniteValue();
@@ -203,24 +197,6 @@ public final class Num extends ANum
     }
 
 
-    public boolean imaginaryValueHasIntegerValue()
-    {
-        return Numbers.imaginaryValueHasIntegerValue(getImaginaryValue());
-    }
-
-
-    public boolean hasDecimalValue()
-    {
-        return Numbers.hasDecimalValue(this);
-    }
-
-
-    public boolean isComplexNumber()
-    {
-        return getNumberType().is(NumberType.ComplexNumber);
-    }
-
-
     public boolean isPositiveInfiniteNumber()
     {
         return getNumberType().is(NumberType.PositiveInfinityNumber) || equal(ofMax());
@@ -230,18 +206,6 @@ public final class Num extends ANum
     public boolean isNegativeInfiniteNumber()
     {
         return getNumberType().is(NumberType.NegativeInfinityNumber) || equal(ofMin());
-    }
-
-
-    public boolean isNaN()
-    {
-        return getRealValue() == null;
-    }
-
-
-    public boolean isZero()
-    {
-        return Numbers.isZero(this);
     }
 
 
