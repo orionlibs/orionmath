@@ -9,28 +9,10 @@
     <url>https://github.com/orionlibs/orionmath</url>
 
 
-    <modules>
+    <!--<modules>
         <module>orionmath_core</module>
         <module>orionmath_algebra</module>
-    </modules>
-    
-    
-    <!--<dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.github.orionlibs</groupId>
-                <artifactId>orionmath_core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            
-            
-            <dependency>
-                <groupId>io.github.orionlibs</groupId>
-                <artifactId>orionmath_algebra</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>-->
+    </modules>-->
 
 
     <properties>
