@@ -15,17 +15,7 @@
     <packaging>pom</packaging>
     
     
-    <!--<modules>
+    <modules>
         <module>orionmath_algebra_number</module>
-    </modules>-->
-    
-    
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>io.github.orionlibs</groupId>
-                <artifactId>orionmath_algebra_number</artifactId>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+    </modules>
 </project>
