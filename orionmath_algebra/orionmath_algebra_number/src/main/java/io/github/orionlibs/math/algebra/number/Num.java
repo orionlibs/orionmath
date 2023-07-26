@@ -1,11 +1,20 @@
 package io.github.orionlibs.math.algebra.number;
 
+import static io.github.orionlibs.math.algebra.number.Precision.DEFAULT_PRECISION;
+
+import io.github.orionlibs.math.core.OrionPrinter;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 
-public final class Num extends ANum
+public final class Num extends ANum//implements Cloneable, Comparable<ANumb>
 {
+    private BigDecimal realValue = BigDecimal.ZERO;
+    private BigDecimal imaginaryValue = BigDecimal.ZERO;
+    public static final Num min = Num.of("-999999999999999999999999999999999999999999999999999999999999999999999999999999.0");
+    public static final Num max = Num.of("999999999999999999999999999999999999999999999999999999999999999999999999999999.0");
+
+
     private Num()
     {
         super();
@@ -14,19 +23,29 @@ public final class Num extends ANum
 
     private Num(boolean isNaN)
     {
-        super(isNaN);
+        if(isNaN)
+        {
+            setRealValueAsNull();
+            setImaginaryValueAsNull();
+        }
+        else
+        {
+            this.isValidNumber = true;
+        }
     }
 
 
     private Num(Number realValue)
     {
-        super(realValue);
+        this.realValue = new BigDecimal(realValue.toString());
+        this.isValidNumber = true;
     }
 
 
     private Num(Number realValue, Number imaginaryValue)
     {
-        super(realValue, imaginaryValue);
+        NumberRules.areNotNull(realValue, imaginaryValue);
+        saveNumberValues(realValue.toString(), imaginaryValue.toString());
     }
 
 
@@ -53,13 +72,13 @@ public final class Num extends ANum
 
     private Num(String realValue)
     {
-        super(realValue);
+        saveNumberValues(realValue, "0");
     }
 
 
     private Num(String realValue, String imaginaryValue)
     {
-        super(realValue, imaginaryValue);
+        saveNumberValues(realValue, imaginaryValue);
     }
 
 
@@ -149,12 +168,161 @@ public final class Num extends ANum
     }
 
 
+    private boolean isValid(String value)
+    {
+        NumberRules.isNotNull(value);
+        if(value != null && ("NaN".equals(value) || "infinity".contains(value.toLowerCase())))
+        {
+            return false;
+        }
+        else
+        {
+            try
+            {
+                new BigDecimal(value);
+                return true;
+            }
+            catch(NumberFormatException e)
+            {
+                //throw new InvalidArgumentException("Canont parse a nonnumeric string.");
+                return false;
+            }
+        }
+    }
+
+
+    private void saveNumberValues(String realValue, String imaginaryValue)
+    {
+        boolean isValidRealNumber = isValid(realValue);
+        boolean isValidImaginaryNumber = isValid(imaginaryValue);
+        this.isValidNumber = isValidRealNumber && isValidImaginaryNumber;
+        if(isValidNumber)
+        {
+            MathContext mathContext = MathContext.UNLIMITED;
+            BigDecimal realValueTemp = new BigDecimal(realValue, mathContext);
+            BigDecimal imaginaryValueTemp = new BigDecimal(imaginaryValue, mathContext);
+            this.realValue = realValueTemp.stripTrailingZeros();
+            //setPrecision(Precision.getValidPrecision(realValueTemp.scale(), imaginaryValueTemp.scale()));
+            if(!imaginaryValue.isEmpty())
+            {
+                this.imaginaryValue = imaginaryValueTemp.stripTrailingZeros();
+                //applyPrecision();
+            }
+            //applyPrecision();
+        }
+        else
+        {
+            if(realValue != null)
+            {
+                throw new InvalidNumberException("The provided value is invalid and cannot create a number out of it.");
+            }
+            else
+            {
+                setRealValueAsNull();
+                setImaginaryValueAsNull();
+            }
+        }
+    }
+
+
+    public int getNumberOfDecimalDigitsOfRealValue()
+    {
+        NumberRules.isNotNull(realValue);
+        return realValue.stripTrailingZeros().scale();
+    }
+
+
+    public int getNumberOfDecimalDigitsOfImaginaryValue()
+    {
+        NumberRules.isNotNull(imaginaryValue);
+        return imaginaryValue.stripTrailingZeros().scale();
+    }
+
+
+    public boolean hasRealValueDecimalDigits()
+    {
+        return getNumberOfDecimalDigitsOfRealValue() > 0;
+    }
+
+
+    public boolean hasImaginaryValueDecimalDigits()
+    {
+        return getNumberOfDecimalDigitsOfImaginaryValue() > 0;
+    }
+
+
+    public int getSumOfDigits()
+    {
+        NumberRules.isNotNull(realValue);
+        int sum = 0;
+        char[] digits = realValue.toPlainString().toCharArray();
+        for(char digit : digits)
+        {
+            if(digit != '-' && digit != '.')
+            {
+                sum += Integer.parseInt(Character.toString(digit));
+            }
+        }
+        return sum;
+    }
+
+
+    public boolean hasIntegerValue()
+    {
+        return realValue.compareTo(new BigDecimal(realValue.toBigInteger())) == 0;
+    }
+
+
+    public boolean hasImaginaryValueIntegerValue()
+    {
+        return imaginaryValue.compareTo(new BigDecimal(imaginaryValue.toBigInteger())) == 0;
+    }
+
+
+    public boolean hasDecimalValue()
+    {
+        return realValue.compareTo(new BigDecimal(realValue.toBigInteger())) != 0
+                        || imaginaryValue.compareTo(new BigDecimal(imaginaryValue.toBigInteger())) != 0;
+    }
+
+
+    public boolean isComplexNumber()
+    {
+        return imaginaryValue.compareTo(BigDecimal.ZERO) != 0;
+    }
+
+
     public Num trimZeroes()
     {
-        NumberRules.areNotNull(getReal(), getImaginary());
-        BigDecimal realValue = getReal().stripTrailingZeros();
-        BigDecimal imaginaryValue = getImaginary().stripTrailingZeros();
-        return Num.of(realValue, imaginaryValue);
+        NumberRules.areNotNull(realValue, imaginaryValue);
+        BigDecimal realValue1 = realValue.stripTrailingZeros();
+        BigDecimal imaginaryValue1 = imaginaryValue.stripTrailingZeros();
+        return Num.of(realValue1, imaginaryValue1);
+    }
+
+
+    public boolean isNaN()
+    {
+        return realValue == null;
+    }
+
+
+    public boolean isZero()
+    {
+        return realValue.compareTo(BigDecimal.ZERO) == 0 && imaginaryValue.compareTo(BigDecimal.ZERO) == 0;
+    }
+
+
+    private int getValidPrecision(int precision)
+    {
+        if(precision > 0)
+        {
+            return precision;
+        }
+        else
+        {
+            return DEFAULT_PRECISION;
+        }
     }
 
 
@@ -175,7 +343,7 @@ public final class Num extends ANum
     }
 
 
-    /*public boolean hasInfiniteValue()
+    public boolean hasInfiniteValue()
     {
         return hasPositiveInfiniteValue() || hasNegativeInfiniteValue();
     }
@@ -183,17 +351,29 @@ public final class Num extends ANum
 
     public boolean hasPositiveInfiniteValue()
     {
-        return isGreaterThanOrEqual(ANumb.ofMax());
+        return realValue.compareTo(max.realValue) > 0;
     }
 
 
     public boolean hasNegativeInfiniteValue()
     {
-        return isLessThanOrEqual(ANumb.ofMin());
+        return realValue.compareTo(min.realValue) < 0;
     }
 
 
-    public boolean isPositiveInfiniteNumber()
+    public void setRealValueAsNull()
+    {
+        this.realValue = null;
+    }
+
+
+    public void setImaginaryValueAsNull()
+    {
+        this.imaginaryValue = null;
+    }
+
+
+    /*public boolean isPositiveInfiniteNumber()
     {
         return getNumberType().is(NumberType.PositiveInfinityNumber) || equal(ofMax());
     }
@@ -1359,4 +1539,61 @@ public final class Num extends ANum
     {
         return !isFinite();
     }*/
+
+
+    public String printRealValue()
+    {
+        return OrionPrinter.print(realValue);
+    }
+
+
+    public String printImaginaryValue()
+    {
+        String printed = OrionPrinter.print(imaginaryValue);
+        if("NaN".equals(printed))
+        {
+            return printed;
+        }
+        else
+        {
+            return printed.startsWith("-") ? printed : "+" + printed;
+        }
+    }
+
+
+    public String print()
+    {
+        boolean xExists = realValue != null;
+        boolean yExists = imaginaryValue != null && BigDecimal.ZERO.compareTo(imaginaryValue) != 0;
+        if(yExists)
+        {
+            return printComplexNumber();
+        }
+        else
+        {
+            return xExists ? printRealValue() : "NaN";
+        }
+    }
+
+
+    private String printComplexNumber()
+    {
+        boolean xExists = realValue != null;
+        int xComparisonValue = xExists ? BigDecimal.ZERO.compareTo(realValue) : 0;
+        if(xComparisonValue != 0)
+        {
+            return printRealValue() + printImaginaryValue() + "i";
+        }
+        else
+        {
+            return printImaginaryValue() + "i";
+        }
+    }
+
+
+    @Override
+    public String toString()
+    {
+        return print();
+    }
 }
