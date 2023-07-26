@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public interface OrionPrinter
 {
-    default String print(BigDecimal x)
+    static String print(BigDecimal x)
     {
         return x != null ? x.toPlainString() : "NaN";
     }

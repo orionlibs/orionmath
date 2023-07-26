@@ -1,5 +1,9 @@
 package io.github.orionlibs.math.algebra.number;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+
 public final class Num extends ANum
 {
     private Num()
@@ -145,9 +149,29 @@ public final class Num extends ANum
     }
 
 
+    public Num trimZeroes()
+    {
+        NumberRules.areNotNull(getReal(), getImaginary());
+        BigDecimal realValue = getReal().stripTrailingZeros();
+        BigDecimal imaginaryValue = getImaginary().stripTrailingZeros();
+        return Num.of(realValue, imaginaryValue);
+    }
+
+
+    public Num applyPrecision(int precision)
+    {
+        precision = getValidPrecision(precision);
+        BigDecimal real = realValue.setScale(precision, RoundingMode.HALF_EVEN);
+        real = new BigDecimal(real.toPlainString(), MathContext.UNLIMITED).setScale(precision + 1).stripTrailingZeros();
+        BigDecimal imaginary = imaginaryValue.setScale(precision, RoundingMode.HALF_EVEN);
+        imaginary = new BigDecimal(imaginary.toPlainString(), MathContext.UNLIMITED).setScale(precision + 1).stripTrailingZeros();
+        return Num.of(real, imaginary);
+    }
+
+
     public Num reverseDigits()
     {
-        return Num.of(reverseDigits(getReal()), reverseDigits(getImaginary()));
+        return Num.of(NumberDigit.reverseDigits(realValue), NumberDigit.reverseDigits(imaginaryValue));
     }
 
 

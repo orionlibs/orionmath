@@ -81,12 +81,12 @@ public class NumTest_digits
     @Test
     void test_getNumberOfDecimalDigits()
     {
-        assertEquals(12, Num.of("123.852085209582").getNumberOfDecimalDigits());
-        assertEquals(12, Num.of("-123.852085209582").getNumberOfDecimalDigits());
-        assertEquals(12, Num.of("123.852085209582", "123.852085209582").getNumberOfDecimalDigits());
-        assertEquals(12, Num.of("-123.852085209582", "-123.852085209582").getNumberOfDecimalDigits());
-        assertEquals(0, Num.of("-123.0").getNumberOfDecimalDigits());
-        assertEquals(0, Num.of("123.").getNumberOfDecimalDigits());
-        assertEquals(0, Num.of("-123").getNumberOfDecimalDigits());
+        assertEquals(12, Num.of("123.852085209582").getNumberOfDecimalDigitsOfRealValue());
+        assertEquals(12, Num.of("-123.852085209582").getNumberOfDecimalDigitsOfRealValue());
+        assertEquals(12, Num.of("123.852085209582", "123.852085209582").getNumberOfDecimalDigitsOfRealValue());
+        assertEquals(12, Num.of("-123.852085209582", "-123.852085209582").getNumberOfDecimalDigitsOfRealValue());
+        assertEquals(0, Num.of("-123.0").getNumberOfDecimalDigitsOfRealValue());
+        assertEquals(0, Num.of("123.").getNumberOfDecimalDigitsOfRealValue());
+        assertEquals(0, Num.of("-123").getNumberOfDecimalDigitsOfRealValue());
     }
 }
