@@ -16,22 +16,22 @@ public class NumTest_precision
     void test_applyPrecision()
     {
         Num x1 = Num.of();
-        x1.applyPrecision(1);
+        x1 = x1.applyPrecision(1);
         assertEquals("0", x1.print());
         Num x2 = Num.of();
-        x2.applyPrecision(10);
+        x2 = x2.applyPrecision(10);
         assertEquals("0", x2.print());
         Num x3 = Num.of("1.2345");
-        x3.applyPrecision(1);
+        x3 = x3.applyPrecision(1);
         assertEquals("1.2", x3.print());
         Num x4 = Num.of("1.8745");
-        x4.applyPrecision(1);
+        x4 = x4.applyPrecision(1);
         assertEquals("1.9", x4.print());
         Num x5 = Num.of("-1.2345678901234567890123456789");
-        x5.applyPrecision(10);
+        x5 = x5.applyPrecision(10);
         assertEquals("-1.2345678901", x5.print());
         Num x6 = Num.of("-1.2345678901234567890123456789");
-        x6.applyPrecision(25);
+        x6 = x6.applyPrecision(25);
         assertEquals("-1.2345678901234567890123457", x6.print());
     }
 }

@@ -1,10 +1,12 @@
 package io.github.orionlibs.math.algebra.number;
 
-import io.github.orionlibs.math.core.Pair;
+import static io.github.orionlibs.math.algebra.number.Precision.DEFAULT_PRECISION;
+
+import io.github.orionlibs.math.core.OrionPrinter;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public abstract class ANum implements PrintableNumber, ValidNumber, TrimmableNumber, NumberDigit, PrecisionNumber//Cloneable, Comparable<ANumb>
+public abstract class ANum//implements Cloneable, Comparable<ANumb>
 {
     protected BigDecimal realValue = BigDecimal.ZERO;
     protected BigDecimal imaginaryValue = BigDecimal.ZERO;
@@ -60,6 +62,29 @@ public abstract class ANum implements PrintableNumber, ValidNumber, TrimmableNum
     }
 
 
+    private boolean isValid(String value)
+    {
+        NumberRules.isNotNull(value);
+        if(value != null && ("NaN".equals(value) || "infinity".contains(value.toLowerCase())))
+        {
+            return false;
+        }
+        else
+        {
+            try
+            {
+                new BigDecimal(value);
+                return true;
+            }
+            catch(NumberFormatException e)
+            {
+                //throw new InvalidArgumentException("Canont parse a nonnumeric string.");
+                return false;
+            }
+        }
+    }
+
+
     private void saveNumberValues(String realValue, String imaginaryValue)
     {
         boolean isValidRealNumber = isValid(realValue);
@@ -94,45 +119,45 @@ public abstract class ANum implements PrintableNumber, ValidNumber, TrimmableNum
     }
 
 
-    public ANum trimZeroes()
-    {
-        return TrimmableNumber.super.trimZeroes(getReal(), getImaginary());
-    }
-
-
     public int getNumberOfDecimalDigitsOfRealValue()
     {
-        return getNumberOfDecimalDigits(getReal());
+        NumberRules.isNotNull(realValue);
+        return realValue.stripTrailingZeros().scale();
     }
 
 
     public int getNumberOfDecimalDigitsOfImaginaryValue()
     {
-        return getNumberOfDecimalDigits(getImaginary());
+        NumberRules.isNotNull(imaginaryValue);
+        return imaginaryValue.stripTrailingZeros().scale();
     }
 
 
     public boolean hasRealValueDecimalDigits()
     {
-        return getNumberOfDecimalDigits(getReal()) > 0;
+        return getNumberOfDecimalDigitsOfRealValue() > 0;
     }
 
 
     public boolean hasImaginaryValueDecimalDigits()
     {
-        return getNumberOfDecimalDigits(getImaginary()) > 0;
+        return getNumberOfDecimalDigitsOfImaginaryValue() > 0;
     }
 
 
     public int getSumOfDigits()
     {
-        return getSumOfDigits(getReal());
-    }
-
-
-    public int getNumberOfDecimalDigits()
-    {
-        return getNumberOfDecimalDigits(getReal());
+        NumberRules.isNotNull(realValue);
+        int sum = 0;
+        char[] digits = realValue.toPlainString().toCharArray();
+        for(char digit : digits)
+        {
+            if(digit != '-' && digit != '.')
+            {
+                sum += Integer.parseInt(Character.toString(digit));
+            }
+        }
+        return sum;
     }
 
 
@@ -173,11 +198,22 @@ public abstract class ANum implements PrintableNumber, ValidNumber, TrimmableNum
     }
 
 
-    public void applyPrecision(int precision)
+    private boolean isValid(int precision)
     {
-        Pair<BigDecimal, BigDecimal> numberWithPrecision = PrecisionNumber.super.applyPrecision(precision, getReal(), getImaginary());
-        this.realValue = numberWithPrecision.getFirst();
-        this.imaginaryValue = numberWithPrecision.getSecond();
+        return precision > 0;
+    }
+
+
+    protected int getValidPrecision(int precision)
+    {
+        if(isValid(precision))
+        {
+            return precision;
+        }
+        else
+        {
+            return DEFAULT_PRECISION;
+        }
     }
 
 
@@ -195,19 +231,51 @@ public abstract class ANum implements PrintableNumber, ValidNumber, TrimmableNum
 
     public String printRealValue()
     {
-        return PrintableNumber.super.printRealValue(realValue);
+        return OrionPrinter.print(realValue);
     }
 
 
     public String printImaginaryValue()
     {
-        return PrintableNumber.super.printImaginaryValue(imaginaryValue);
+        String printed = OrionPrinter.print(imaginaryValue);
+        if("NaN".equals(printed))
+        {
+            return printed;
+        }
+        else
+        {
+            return printed.startsWith("-") ? printed : "+" + printed;
+        }
     }
 
 
     public String print()
     {
-        return PrintableNumber.super.print(realValue, imaginaryValue);
+        boolean xExists = realValue != null;
+        boolean yExists = imaginaryValue != null && BigDecimal.ZERO.compareTo(imaginaryValue) != 0;
+        if(yExists)
+        {
+            return printComplexNumber();
+        }
+        else
+        {
+            return xExists ? printRealValue() : "NaN";
+        }
+    }
+
+
+    private String printComplexNumber()
+    {
+        boolean xExists = realValue != null;
+        int xComparisonValue = xExists ? BigDecimal.ZERO.compareTo(realValue) : 0;
+        if(xComparisonValue != 0)
+        {
+            return printRealValue() + printImaginaryValue() + "i";
+        }
+        else
+        {
+            return printImaginaryValue() + "i";
+        }
     }
 
 
