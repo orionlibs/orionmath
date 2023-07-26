@@ -89,4 +89,14 @@ public class NumTest_digits
         assertEquals(0, Num.of("123.").getNumberOfDecimalDigitsOfRealValue());
         assertEquals(0, Num.of("-123").getNumberOfDecimalDigitsOfRealValue());
     }
+
+
+    @Test
+    void test_trimZeroes()
+    {
+        assertEquals("123.852085209582", Num.of("123.8520852095820000000000000000000000000000").trimZeroes().print());
+        assertEquals("123.852085209582", Num.of("123.852085209582").trimZeroes().print());
+        assertEquals("-123.852085209582", Num.of("-123.8520852095820000000000000000000000000000").trimZeroes().print());
+        assertEquals("-123.852085209582", Num.of("-123.852085209582").trimZeroes().print());
+    }
 }
