@@ -151,35 +151,7 @@ public final class Num extends ANum
     }
 
 
-    /*public void applyPrecision()
-    {
-        PrecisionService.applyPrecision(this);
-    }
-
-
-    public ANumb applyPrecisionGET()
-    {
-        ANumb copy = getCopy();
-        copy.applyPrecision();
-        return copy;
-    }
-
-
-    public void applyPrecision(int precision)
-    {
-        new PrecisionService().applyPrecision(this, precision);
-    }
-
-
-    public ANumb applyPrecisionGET(int precision)
-    {
-        ANumb copy = getCopy();
-        copy.applyPrecision(precision);
-        return copy;
-    }
-
-
-    public boolean hasInfiniteValue()
+    /*public boolean hasInfiniteValue()
     {
         return hasPositiveInfiniteValue() || hasNegativeInfiniteValue();
     }

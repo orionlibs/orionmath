@@ -4,6 +4,23 @@ import java.math.BigDecimal;
 
 public interface NumberDigit
 {
+    default int getNumberOfDecimalDigits(String x)
+    {
+        NumberRules.isNotNull(x);
+        if(hasDecimalPoint(x))
+        {
+            return x.substring(x.indexOf(".") + 1).length();
+        }
+        return 0;
+    }
+
+
+    default boolean hasDecimalPoint(String x)
+    {
+        return x != null && x.indexOf(".") >= 0;
+    }
+
+
     default int getNumberOfDecimalDigits(BigDecimal x)
     {
         NumberRules.isNotNull(x);

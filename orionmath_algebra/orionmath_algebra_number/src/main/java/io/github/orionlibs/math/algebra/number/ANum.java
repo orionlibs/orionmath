@@ -1,9 +1,10 @@
 package io.github.orionlibs.math.algebra.number;
 
+import io.github.orionlibs.math.core.Pair;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
-public abstract class ANum implements PrintableNumber, ValidNumber, TrimmableNumber, NumberDigit//Cloneable, Comparable<ANumb>
+public abstract class ANum implements PrintableNumber, ValidNumber, TrimmableNumber, NumberDigit, PrecisionNumber//Cloneable, Comparable<ANumb>
 {
     protected BigDecimal realValue = BigDecimal.ZERO;
     protected BigDecimal imaginaryValue = BigDecimal.ZERO;
@@ -169,6 +170,14 @@ public abstract class ANum implements PrintableNumber, ValidNumber, TrimmableNum
     public boolean isZero()
     {
         return getReal().compareTo(BigDecimal.ZERO) == 0 && getImaginary().compareTo(BigDecimal.ZERO) == 0;
+    }
+
+
+    public void applyPrecision(int precision)
+    {
+        Pair<BigDecimal, BigDecimal> numberWithPrecision = PrecisionNumber.super.applyPrecision(precision, getReal(), getImaginary());
+        this.realValue = numberWithPrecision.getFirst();
+        this.imaginaryValue = numberWithPrecision.getSecond();
     }
 
 
