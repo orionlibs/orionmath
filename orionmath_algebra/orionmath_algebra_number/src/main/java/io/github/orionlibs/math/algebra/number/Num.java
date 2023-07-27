@@ -373,18 +373,6 @@ public final class Num extends ANum//implements Cloneable, Comparable<ANumb>
     }
 
 
-    /*public boolean isPositiveInfiniteNumber()
-    {
-        return getNumberType().is(NumberType.PositiveInfinityNumber) || equal(ofMax());
-    }
-
-
-    public boolean isNegativeInfiniteNumber()
-    {
-        return getNumberType().is(NumberType.NegativeInfinityNumber) || equal(ofMin());
-    }
-
-
     public boolean isNotZero()
     {
         return !isZero();
@@ -393,19 +381,19 @@ public final class Num extends ANum//implements Cloneable, Comparable<ANumb>
 
     public boolean isOne()
     {
-        return Numbers.isOne(this);
+        return realValue.compareTo(BigDecimal.ONE) == 0;
     }
 
 
     public boolean isNotOne()
     {
-        return Numbers.isNotOne(this);
+        return !isOne();
     }
 
 
     public boolean isMinusOne()
     {
-        return Numbers.isMinusOne(this);
+        return realValue.compareTo(BigDecimal.ONE.negate()) == 0;
     }
 
 
@@ -417,71 +405,73 @@ public final class Num extends ANum//implements Cloneable, Comparable<ANumb>
 
     public boolean isPositive()
     {
-        return Numbers.isPositive(this);
+        return realValue.compareTo(BigDecimal.ZERO) > 0;
     }
 
 
     public boolean isNegative()
     {
-        return !isPositive() && isNotZero();
+        return realValue.compareTo(BigDecimal.ZERO) < 0;
     }
 
 
     public boolean isNonPositive()
     {
-        return Numbers.isNonPositive(this);
+        return realValue.compareTo(BigDecimal.ZERO) <= 0;
     }
 
 
     public boolean isNonNegative()
     {
-        return Numbers.isNonNegative(this);
+        return realValue.compareTo(BigDecimal.ZERO) >= 0;
     }
 
 
-    public boolean isPrime()
+    public Num negate()
+    {
+        BigDecimal newRealValue = realValue != null ? realValue.negate() : BigDecimal.ZERO;
+        BigDecimal newImaginaryValue = imaginaryValue != null ? imaginaryValue.negate() : BigDecimal.ZERO;
+        return Num.of(newRealValue, newImaginaryValue);
+    }
+
+
+    /*public Num getModulus()
+    {
+        Num realValueTemp = Num.of(realValue);
+        Num imaginaryValueTemp = Num.of(imaginaryValue);
+        Num realValueSquared = realValueTemp.square();
+        Num imaginaryValueSquared = imaginaryValueTemp.square();
+        int precision = realValueSquared.getNumberOfDecimalDigitsOfRealValue() + imaginaryValueSquared.getNumberOfDecimalDigitsOfRealValue();
+        return realValueSquared.add(imaginaryValueSquared).getSquareRoot(precision);
+    }*/
+
+
+    /*public Num reciprocate()
+    {
+        if(isComplexNumber())
+        {
+            Num modulusSquared = x.getModulus().squareGET();
+            Num newRealValue = x.getAsANumber().divideGET(modulusSquared);
+            Num newImaginaryValue = x.getImaginaryValueAsANumber().negateGET().divideGET(modulusSquared);
+            x.setNewValues(newRealValue, newImaginaryValue);
+        }
+        else
+        {
+            x.setNewValues(Num.of(1).divideGET(x), Num.of());
+        }
+        return Num.of(newRealValue, newImaginaryValue);
+    }*/
+
+
+    /*public boolean isPrime()
     {
         return PrimeNumberService.isPrimeNumber(this);
-    }
-
-
-    public void negate()
-    {
-        ArithmeticService.negate(this);
-    }
-
-
-    public ANumb negateGET()
-    {
-        ANumb copy = getCopy();
-        copy.negate();
-        return copy;
-    }
-
-
-    public void reciprocate()
-    {
-        ArithmeticService.reciprocate(this);
-    }
-
-
-    public ANumb reciprocateGET()
-    {
-        ANumb newNumber = getCopy();
-        newNumber.reciprocate();
-        return newNumber;
     }
 
 
     public BigDecimal getModulusAsDecimal()
     {
         return new NumberInternalService().getModulus(this).get();
-    }
-
-
-    public ANumb getModulus()
-    {
-        return new NumberInternalService().getModulus(this);
     }
 
 
